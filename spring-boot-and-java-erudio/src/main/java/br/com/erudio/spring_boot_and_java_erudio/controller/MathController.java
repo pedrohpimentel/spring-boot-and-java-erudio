@@ -18,8 +18,57 @@ public class MathController {
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
-
     }
+
+    // http://localhost:8080/math/sub/3/5
+    @RequestMapping("/sub/{numberOne}/{numberTwo}")
+    public Double subtraction (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception{
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+    }
+
+    // http://localhost:8080/math/mult/3/5
+    @RequestMapping("/mult/{numberOne}/{numberTwo}")
+    public Double multiplication (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception{
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+    }
+
+    // http://localhost:8080/math/div/3/5
+    @RequestMapping("/div/{numberOne}/{numberTwo}")
+    public Double division (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception{
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+    }
+
+    // http://localhost:8080/math/ave/3/5
+    @RequestMapping("/ave/{numberOne}/{numberTwo}")
+    public Double average (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception{
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2.0;
+    }
+
+    // http://localhost:8080/math/sqr/3/5
+    @RequestMapping("/sqr/{numberOne}")
+    public Double square (
+            @PathVariable("numberOne") String numberOne) throws Exception{
+
+        if (!isNumeric(numberOne)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        return Math.sqrt(convertToDouble(numberOne));
+    }
+
     private Double convertToDouble(String strNumber) throws IllegalArgumentException{
         if (strNumber == null || strNumber.isEmpty()) throw new UnsupportedMathOperationException("Please set a numeric value!");
         String number = strNumber.replace("," , "."); // R$ 50,00 -> U$D 50.00
