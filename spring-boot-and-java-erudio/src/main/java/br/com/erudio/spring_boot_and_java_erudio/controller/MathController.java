@@ -19,11 +19,15 @@ public class MathController {
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
 
     }
-    private Double convertToDouble(String numberTwo){
-        return 1D;
+    private Double convertToDouble(String strNumber) throws IllegalArgumentException{
+        if (strNumber == null || strNumber.isEmpty()) throw new IllegalArgumentException();
+        String number = strNumber.replace("," , "."); // R$ 50,00 -> U$D 50.00
+        return Double.parseDouble(number);
     }
 
-    private boolean isNumeric(String numberOne) {
-        return true;
+    private boolean isNumeric(String strNumber) {
+        if (strNumber == null || strNumber.isEmpty()) return false;
+        String number = strNumber.replace("," , "."); // R$ 50,00 -> U$D 50.00
+        return number.matches("[-+]?[0-9]*\\.?[0-9]+");
     }
 }
