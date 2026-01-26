@@ -15,7 +15,7 @@ public class PersonService {
     private Logger logger = Logger.getLogger(PersonService.class.getName());
 
     public Person findById(String id){
-        logger.info("Finding one Pérson! ");
+        logger.info("Finding one Person! ");
 
         Person person = new Person();
         person.setId(counter.incrementAndGet());
@@ -29,6 +29,8 @@ public class PersonService {
 
     //Lembre-se, o método "findAll" sempre vai retornar uma lista (List<>).
     public List<Person> findAll(){
+        logger.info("Finding all Person! ");
+
         List<Person> persons = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             Person person = mockPerson(i);
@@ -47,4 +49,17 @@ public class PersonService {
         return person;
     }
 
+    public Person create(Person person){
+        logger.info("Creating one Person! ");
+        return person;
+    }
+
+    public Person update(Person person){
+        logger.info("Updating one Person! ");
+        return person;
+    }
+
+    public void delete(String id){
+        logger.info("Deleting one Person! ");
+    }
 }
