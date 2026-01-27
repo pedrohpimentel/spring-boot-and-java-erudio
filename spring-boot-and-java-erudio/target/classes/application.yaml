@@ -1,3 +1,13 @@
 spring:
   application:
     name: spring-boot-and-java-erudio
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_boot_and_java_pedro?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: '1234567'
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: false
