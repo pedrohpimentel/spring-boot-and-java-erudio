@@ -4,6 +4,7 @@ import br.com.erudio.spring_boot_and_java_erudio.model.Person;
 import br.com.erudio.spring_boot_and_java_erudio.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,41 +16,47 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @RequestMapping(value = "/{id}",
-    method = RequestMethod.GET ,
+    //Trocando "RequestMapping" por "GetMapping"
+    @GetMapping(value = "/{id}",
     produces = MediaType.APPLICATION_JSON_VALUE)
     public Person findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 
     //Quando não houver parâmetro para a rota, significa que está definido por padrão um findAll.
-    @RequestMapping(
-            method = RequestMethod.GET ,
+    //Trocando "RequestMapping" por "GetMapping"
+    @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Person> findAll(){
         return service.findAll();
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST ,
+    //Trocando "RequestMapping" por "PostMapping"
+    @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Person create(@RequestBody Person person){
         return service.create(person);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT ,
+    //Trocando "RequestMapping" por "PutMapping"
+    @PutMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Person update(@RequestBody Person person){
         return service.update(person);
     }
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.DELETE)
-    public void delete (@PathVariable("id") Long id){
+    //Trocando "RequestMapping" por "DeleteMapping"
+    //Iremos ajustar o método delete para retornar um "no content"
+    @DeleteMapping(value = "/{id}")
+
+    // Passando um coringa no "ResponseEntity<?>"
+    public ResponseEntity<?> delete (@PathVariable("id") Long id){
         service.delete(id);
+
+        //Ele irá retornar um "204 no content".
+        return ResponseEntity.noContent().build();
     }
 }
 
