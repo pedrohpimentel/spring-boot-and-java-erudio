@@ -1,9 +1,12 @@
 package br.com.erudio.service;
 
-import br.com.erudio.DTO.PersonDTO;
+import br.com.erudio.DTO.v1.PersonDTO;
+import br.com.erudio.DTO.v2.PersonDTOv2;
 import br.com.erudio.exception.ResourceNotFoundException;
 import static br.com.erudio.mapper.ObjectMapper.parseListObjects;
 import static br.com.erudio.mapper.ObjectMapper.parseObject;
+
+import br.com.erudio.mapper.custom.PersonMapper;
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -23,6 +26,9 @@ public class PersonService {
     //Injetando a dependência "PersonRepository" no PersonService
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    PersonMapper converter;
 
     //Quem irá prover o método findAll será o Spring Data.
     public List<PersonDTO> findAll(){
@@ -45,6 +51,12 @@ public class PersonService {
         logger.info("Creating one Person! ");
         var entity = parseObject(person,Person.class);
         return parseObject(repository.save(entity),PersonDTO.class);
+    }
+
+    public PersonDTOv2 createV2(PersonDTOv2 person){
+        logger.info("Creating one Person V2! ");
+        var entity = converter.convertDtoToEntity(person);
+        return converter.convertEntityToDto(entity);
     }
 
     //O update irá substituir os mocks que foi antigamente.

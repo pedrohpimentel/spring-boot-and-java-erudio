@@ -1,8 +1,9 @@
-package br.com.erudio.DTO;
+package br.com.erudio.DTO.v2;
 
+import java.util.Date;
 import java.util.Objects;
 
-public class PersonDTO {
+public class PersonDTOv2 {
 
     private static final long SerialVersionUID = 1L;
 
@@ -10,12 +11,13 @@ public class PersonDTO {
     private Long id;
     private String firstName;
     private String lastName;
+    private Date birthDay;
     private String address;
     private String gender;
 
-    public PersonDTO(){}
+    public PersonDTOv2(){}
 
-    public PersonDTO(Long id, String firstName, String lastName, String address, String gender) {
+    public PersonDTOv2(Long id, String firstName, String lastName, String address, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,14 +65,23 @@ public class PersonDTO {
         this.gender = gender;
     }
 
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof PersonDTO person)) return false;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTOv2 that = (PersonDTOv2) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getBirthDay(), that.getBirthDay()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getBirthDay(), getAddress(), getGender());
     }
 }
