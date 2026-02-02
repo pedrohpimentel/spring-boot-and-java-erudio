@@ -55,8 +55,15 @@ public class PersonService {
 
     public PersonDTOv2 createV2(PersonDTOv2 person){
         logger.info("Creating one Person V2! ");
-        var entity = converter.convertDtoToEntity(person);
-        return converter.convertEntityToDto(entity);
+
+        //Converte para entidade;
+        var entity = converter.convertDTOtoEntity(person);
+
+        //SALVA no banco;
+        var savedEntity = repository.save(entity);
+
+        //Converte a entidade salva de volta para o DTO.
+        return converter.convertEntityToDTO(savedEntity);
     }
 
     //O update irá substituir os mocks que foi antigamente.

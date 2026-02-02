@@ -7,7 +7,6 @@ public class PersonDTOv2 {
 
     private static final long SerialVersionUID = 1L;
 
-
     private Long id;
     private String firstName;
     private String lastName;
