@@ -1,4 +1,4 @@
-package br.com.erudio.spring_boot_and_java_erudio.exception;
+package br.com.erudio.exception;
 
 import java.util.Date;
 

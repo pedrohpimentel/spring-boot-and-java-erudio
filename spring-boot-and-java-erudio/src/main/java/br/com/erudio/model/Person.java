@@ -1,4 +1,4 @@
-package br.com.erudio.spring_boot_and_java_erudio.model;
+package br.com.erudio.model;
 
 import jakarta.persistence.*;
 

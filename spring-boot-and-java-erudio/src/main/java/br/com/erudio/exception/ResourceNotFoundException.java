@@ -1,4 +1,4 @@
-package br.com.erudio.spring_boot_and_java_erudio.exception;
+package br.com.erudio.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

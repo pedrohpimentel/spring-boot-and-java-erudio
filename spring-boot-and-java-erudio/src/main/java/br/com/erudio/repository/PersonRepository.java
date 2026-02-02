@@ -1,6 +1,6 @@
-package br.com.erudio.spring_boot_and_java_erudio.repository;
+package br.com.erudio.repository;
 
-import br.com.erudio.spring_boot_and_java_erudio.model.Person;
+import br.com.erudio.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 //Com apenas esta Interface de "PersonRepository" já possível acessar os métodos básicos de CRUD.
