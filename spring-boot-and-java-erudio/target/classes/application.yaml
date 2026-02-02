@@ -13,4 +13,4 @@ spring:
     show-sql: false
 logging:
   level:
-    br.com.erudio: ERROR
+    br.com.erudio: DEBUG
