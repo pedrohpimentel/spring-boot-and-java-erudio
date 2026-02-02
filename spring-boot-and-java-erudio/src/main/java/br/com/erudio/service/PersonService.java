@@ -1,6 +1,9 @@
 package br.com.erudio.service;
 
+import br.com.erudio.DTO.PersonDTO;
 import br.com.erudio.exception.ResourceNotFoundException;
+import static br.com.erudio.mapper.ObjectMapper.parseListObjects;
+import static br.com.erudio.mapper.ObjectMapper.parseObject;
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -22,28 +25,30 @@ public class PersonService {
     PersonRepository repository;
 
     //Quem irá prover o método findAll será o Spring Data.
-    public List<Person> findAll(){
+    public List<PersonDTO> findAll(){
         logger.info("Finding all Person! ");
 
-       return repository.findAll();
+       return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
     //Em findById ele irá retornar um Optional
-    public Person findById(Long id){
+    public PersonDTO findById(Long id){
         logger.info("Finding one Person! ");
 
         //Em caso de não encontrar id, será lançada a exceção criada "ResourceNotFoundException"
-        return repository.findById(id)
+        var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        return parseObject(entity,PersonDTO.class);
     }
 
-    public Person create(Person person){
+    public PersonDTO create(PersonDTO person){
         logger.info("Creating one Person! ");
-        return repository.save(person);
+        var entity = parseObject(person,Person.class);
+        return parseObject(repository.save(entity),PersonDTO.class);
     }
 
     //O update irá substituir os mocks que foi antigamente.
-    public Person update(Person person){
+    public PersonDTO update(PersonDTO person){
         logger.info("Updating one Person! ");
 
         //Irá receber a mesma estrutura do "findById", mas ele será um novo "Person" que se chamará entity;
@@ -57,7 +62,7 @@ public class PersonService {
         entity.setGender(person.getGender());
 
         //Retornando um novo "person";
-        return repository.save(person);
+        return parseObject(repository.save(entity),PersonDTO.class);
     }
 
     //Para o delete mesma lógica.
