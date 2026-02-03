@@ -64,7 +64,11 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/spring_boot_and_java_pedro?useTimezone=true&amp;serverTimezone=UTC</url>
+                    <user>root</user>
+                    <password>1234567</password>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>com.mysql</groupId>

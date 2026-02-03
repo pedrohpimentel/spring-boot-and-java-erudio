@@ -1,6 +1,6 @@
 package br.com.erudio.controller;
 
-import br.com.erudio.DTO.PersonDTO;
+import br.com.erudio.dto.PersonDTO;
 
 import br.com.erudio.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;

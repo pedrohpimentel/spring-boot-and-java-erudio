@@ -1,6 +1,6 @@
 package br.com.erudio.service;
 
-import br.com.erudio.DTO.PersonDTO;
+import br.com.erudio.dto.PersonDTO;
 
 import br.com.erudio.exception.ResourceNotFoundException;
 import static br.com.erudio.mapper.ObjectMapper.parseListObjects;

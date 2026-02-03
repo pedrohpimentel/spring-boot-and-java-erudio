@@ -1,16 +1,30 @@
-package br.com.erudio.DTO;
+package br.com.erudio.dto;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Objects;
 
+//Define a ordem que você deseja.
+@JsonPropertyOrder({"id", "address","first_name","last_name","gender"})
 public class PersonDTO {
 
     private static final long SerialVersionUID = 1L;
 
 
     private Long id;
+
+    //Define o nome que você quiser colocar.
+    @JsonProperty("first_name")
     private String firstName;
+
+    @JsonProperty("last_name")
     private String lastName;
     private String address;
+
+    //Para suprimir o gênero.
+    @JsonIgnore
     private String gender;
 
     public PersonDTO(){}
