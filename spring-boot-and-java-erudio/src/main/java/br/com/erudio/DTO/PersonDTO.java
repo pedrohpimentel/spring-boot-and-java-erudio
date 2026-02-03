@@ -1,4 +1,4 @@
-package br.com.erudio.DTO.v1;
+package br.com.erudio.DTO;
 
 import java.util.Objects;
 

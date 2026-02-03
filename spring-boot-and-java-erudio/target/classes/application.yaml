@@ -2,15 +2,17 @@ spring:
   application:
     name: spring-boot-and-java-erudio
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/spring_boot_and_java_pedro?useTimezone=true&serverTimezone=UTC
     username: root
-    password: '1234567'
+    password: 1234567
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    open-in-view: false
     hibernate:
-      ddl-auto: update
-    show-sql: false
-logging:
-  level:
-    br.com.erudio: DEBUG
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
