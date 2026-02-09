@@ -1,6 +1,5 @@
 package br.com.erudio.controller;
 
-import br.com.erudio.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test/v1")
 public class TestLogController {
 
-    private Logger logger = LoggerFactory.getLogger(PersonService.class.getName());
+    private Logger logger = LoggerFactory.getLogger(TestLogController.class.getName());
 
-    @GetMapping("/test")
-    public String testLog(){
-        logger.info("this is INFO log");
-        logger.warn("this is WARN log");
-        logger.error("this is ERROR log");
-        logger.debug("this is DEBUG log");
-        return "Log generated successfully!";
+    @GetMapping
+    public String testLog() {
+        logger.debug("This is an DEBUG log");
+        logger.info("This is an INFO log");
+        logger.warn("This is an WARN log");
+        logger.error("This is an ERROR log");
+        return "Logs generated successfully!";
     }
 }
